@@ -4,7 +4,7 @@ import { Button } from './components/Button';
 import { MovieCard } from './components/MovieCard';
 
 import { SideBar } from './components/SideBar';
-// import { Content } from './components/Content';
+import { Content } from './components/Content';
 
 import { api } from './services/api';
 
@@ -12,6 +12,7 @@ import './styles/global.scss';
 
 import './styles/sidebar.scss';
 import './styles/content.scss';
+
 
 interface GenreResponseProps {
   id: number;
@@ -63,20 +64,7 @@ export function App() {
 
       <SideBar  genres={genres} selectedGenreId={selectedGenreId} onSetSelectedGenreId={handleClickButton} />
 
-
-      <div className="container">
-        <header>
-          <span className="category">Categoria:<span> {selectedGenre.title}</span></span>
-        </header>
-
-        <main>
-          <div className="movies-list">
-            {movies.map(movie => (
-              <MovieCard key ={movie.imdbID} title={movie.Title} poster={movie.Poster} runtime={movie.Runtime} rating={movie.Ratings[0].Value} />
-            ))}
-          </div>
-        </main>
-      </div>
+      <Content movie={movies} selectedGenreTitle={selectedGenre.title} />
     </div>
   )
 }
